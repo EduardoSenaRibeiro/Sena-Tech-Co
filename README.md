@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sena Tech & Co. — Landing Page
 
-## Getting Started
+Landing page institucional da Sena Tech & Co., construída com [Next.js](https://nextjs.org) (App Router), React, TypeScript e Tailwind CSS.
 
-First, run the development server:
+Site em produção: **https://sena-tech-co.vercel.app**
+
+## Como rodar localmente
+
+Instale as dependências e suba o servidor de desenvolvimento:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador para ver o resultado. A página é atualizada automaticamente conforme você edita os arquivos em `src/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variáveis de ambiente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O formulário de contato (`/api/contact`) envia e-mail através do [Resend](https://resend.com). Copie o arquivo de exemplo e preencha com sua chave:
 
-## Learn More
+```bash
+cp .env.local.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+| Variável          | Descrição                                                                 |
+| ----------------- | -------------------------------------------------------------------------- |
+| `RESEND_API_KEY`  | Chave de API do Resend, usada para enviar os e-mails de contato/orçamento. |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Sem essa variável configurada, o formulário continua funcionando, mas o lead é apenas registrado no log do servidor em vez de enviado por e-mail (útil para desenvolvimento local sem depender do Resend).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Na Vercel, a mesma variável já está configurada em **Project Settings → Environment Variables** para os ambientes de Produção e Preview.
 
-## Deploy on Vercel
+## Estrutura do projeto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `src/app/` — páginas e rotas (App Router), incluindo a API de contato (`api/contact`), favicon, imagem de OpenGraph, sitemap e a página de Política de Privacidade (`/privacidade`).
+- `src/components/sections/` — as seções da landing page (Header, Hero, Serviços, Sobre, Portfólio, Depoimentos, FAQ, Contato, Footer).
+- `src/components/ui/` — componentes reutilizáveis de interface.
+- `src/lib/site-config.ts` — configuração central do site (nome, contato, redes sociais, navegação). É o principal arquivo a editar para atualizar dados da empresa.
+- `public/images/` — imagens estáticas do site, incluindo a pasta `portfolio/` reservada para as fotos reais dos projetos.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy
+
+O projeto está conectado ao GitHub e hospedado na [Vercel](https://vercel.com) — todo push para a branch `master` gera automaticamente um novo deploy em produção.
+
+Para aprender mais sobre o Next.js, consulte a [documentação oficial](https://nextjs.org/docs).
