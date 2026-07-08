@@ -34,9 +34,17 @@ export function Footer() {
             ))}
           </nav>
 
-          <p className="text-xs text-[#8888a4] font-[family-name:var(--font-geist-mono)]">
-            © {new Date().getFullYear()} {siteConfig.name}
-          </p>
+          <div className="flex flex-col items-center md:items-end gap-1.5">
+            <p className="text-xs text-[#8888a4] font-[family-name:var(--font-geist-mono)]">
+              © {new Date().getFullYear()} {siteConfig.name}
+            </p>
+            <a
+              href="/privacidade"
+              className="text-xs text-[#8888a4] hover:text-[#c4c4d4] transition-colors"
+            >
+              Política de Privacidade
+            </a>
+          </div>
         </div>
       </div>
     </footer>

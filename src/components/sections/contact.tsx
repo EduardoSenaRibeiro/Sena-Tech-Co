@@ -247,6 +247,17 @@ export function Contact() {
                   {status === "submitting" ? "Enviando..." : "Enviar mensagem"}
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </button>
+
+                <p className="text-xs text-[#8888a4] text-center">
+                  Ao enviar, você concorda com o tratamento dos seus dados conforme nossa{" "}
+                  <a
+                    href="/privacidade"
+                    className="text-violet-400 hover:text-violet-300 underline underline-offset-4 transition-colors"
+                  >
+                    Política de Privacidade
+                  </a>
+                  .
+                </p>
               </form>
             )}
           </div>
