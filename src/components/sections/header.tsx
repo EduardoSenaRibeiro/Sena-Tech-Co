@@ -46,10 +46,10 @@ export function Header() {
           <Image
             src="/images/logo-mark.png"
             alt=""
-            width={32}
-            height={32}
+            width={44}
+            height={44}
             priority
-            className="w-8 h-8 object-contain drop-shadow-[0_0_16px_rgba(124,58,237,0.5)]"
+            className="w-11 h-11 object-contain drop-shadow-[0_0_16px_rgba(124,58,237,0.5)]"
           />
           <span className="text-lg font-bold text-white tracking-tight font-[family-name:var(--font-outfit)]">
             {siteConfig.shortName}{" "}
