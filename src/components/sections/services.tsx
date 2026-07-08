@@ -17,7 +17,7 @@ const services: Service[] = [
     icon: Globe,
     title: "Web Design & Sites",
     desc: "Sites institucionais, landing pages e portfólios com performance máxima. Código limpo, carregamento rápido e design responsivo que converte visitantes em clientes.",
-    tags: ["JavaScript", "Next.js", "React", "Figma", "SEO"],
+    tags: ["JavaScript", "Next.js", "React", "UI/UX", "SEO"],
     iconBg: "from-violet-600 to-violet-500",
   },
   {

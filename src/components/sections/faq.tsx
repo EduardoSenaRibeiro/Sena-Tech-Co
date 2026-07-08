@@ -21,7 +21,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Como funciona o processo de desenvolvimento?",
     answer:
-      "Começamos entendendo o seu negócio e objetivos, depois prototipamos a interface no Figma para validar a experiência antes de escrever código. Só então partimos para o desenvolvimento, com entregas incrementais e pontos de alinhamento até o deploy em produção.",
+      "Começamos entendendo o seu negócio e objetivos, depois prototipamos a interface para validar a experiência antes de escrever código. Só então partimos para o desenvolvimento, com entregas incrementais e pontos de alinhamento até o deploy em produção.",
   },
   {
     question: "Como funciona o orçamento e as formas de pagamento?",
@@ -41,7 +41,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Preciso já ter o design pronto para começar o projeto?",
     answer:
-      "Não. Se você já tem um design ou protótipo no Figma, ótimo, podemos partir dele. Caso contrário, cuidamos da prototipação completa como parte do processo, criando a interface do zero em conjunto com você antes de iniciar o desenvolvimento.",
+      "Não. Se você já tem um design ou protótipo pronto, ótimo, podemos partir dele. Caso contrário, cuidamos da prototipação completa como parte do processo, criando a interface do zero em conjunto com você antes de iniciar o desenvolvimento.",
   },
 ];
 

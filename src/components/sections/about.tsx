@@ -13,7 +13,7 @@ const techStack: { icon: LucideIcon; label: string }[] = [
   { icon: Layers, label: "Java & Spring Boot" },
   { icon: LayoutDashboard, label: "React / Next.js" },
   { icon: Code2, label: "Node.js" },
-  { icon: Globe, label: "Figma Prototyping" },
+  { icon: Globe, label: "Prototipação de UI/UX" },
 ];
 
 export function About() {
@@ -46,7 +46,7 @@ export function About() {
           </p>
           <p className="mt-4 text-[#8888a4] leading-relaxed">
             Nossa especialidade está na <span className="text-white">arquitetura de software</span> e na
-            prototipação avançada no Figma — antes de escrever uma linha de código, garantimos que a solução
+            prototipação avançada de interfaces — antes de escrever uma linha de código, garantimos que a solução
             está certa. Trabalhamos com tecnologias consolidadas e escolhidas para cada desafio, não por
             modismo.
           </p>
