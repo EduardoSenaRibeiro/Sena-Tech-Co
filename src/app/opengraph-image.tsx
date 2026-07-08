@@ -31,14 +31,14 @@ export default async function Image() {
         <div
           style={{
             display: "flex",
-            width: 120,
-            height: 120,
+            width: 190,
+            height: 190,
             alignItems: "center",
             justifyContent: "center",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoMarkSrc} width={120} height={120} alt="" />
+          <img src={logoMarkSrc} width={190} height={190} alt="" />
         </div>
         <div
           style={{

@@ -10,9 +10,9 @@ export function Footer() {
             <Image
               src="/images/logo-mark.png"
               alt=""
-              width={36}
-              height={36}
-              className="w-9 h-9 object-contain"
+              width={52}
+              height={52}
+              className="w-[52px] h-[52px] object-contain"
             />
             <span className="text-base font-bold text-white">
               {siteConfig.shortName}{" "}
