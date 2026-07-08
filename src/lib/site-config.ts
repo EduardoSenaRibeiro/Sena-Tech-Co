@@ -14,8 +14,7 @@ export const siteConfig = {
   tagline: "Construímos o motor digital do seu negócio.",
   description:
     "Da landing page ao sistema SaaS completo — a Sena Tech & Co. entrega sites rápidos, plataformas escaláveis e softwares sob medida que transformam ideia em resultado real.",
-  // SUBSTITUA pela URL final de produção (usada em metadata, sitemap e OG tags)
-  url: "https://www.senatech.com.br",
+  url: "https://sena-tech-co.vercel.app",
   locale: "pt_BR",
 
   contact: {
