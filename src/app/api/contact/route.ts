@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { siteConfig } from "@/lib/site-config";
 
 type ContactPayload = {
   name?: unknown;
@@ -13,6 +15,22 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Serviços permitidos — devem casar com os <option value="..."> do formulário
 // em src/components/sections/contact.tsx.
 const ALLOWED_SERVICES = ["web", "saas", "custom", "other"] as const;
+
+const SERVICE_LABELS: Record<(typeof ALLOWED_SERVICES)[number], string> = {
+  web: "Web Design & Sites",
+  saas: "Sistema SaaS",
+  custom: "Solução Sob Medida",
+  other: "Outro",
+};
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 // Limites de tamanho por campo (em caracteres).
 const MAX_NAME = 100;
@@ -109,15 +127,58 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Mensagem muito longa." }, { status: 400 });
   }
 
-  // TODO(cliente): plugue aqui um provedor real de e-mail/CRM, por exemplo:
-  //   - Resend (https://resend.com) com RESEND_API_KEY em variável de ambiente
-  //   - Formspree / EmailJS
-  //   - Webhook para um CRM (HubSpot, RD Station, etc.)
-  // Por enquanto, a submissão só é registrada no log do servidor (sem PII).
-  console.info("[contact] novo lead recebido", {
-    service,
-    timestamp: new Date().toISOString(),
-  });
+  const resendApiKey = process.env.RESEND_API_KEY;
 
-  return NextResponse.json({ ok: true });
+  if (!resendApiKey) {
+    // Sem RESEND_API_KEY configurada (ex.: ambiente local sem .env.local):
+    // não há como enviar e-mail, então ao menos registramos o lead no log
+    // pra não perdê-lo. Configure a variável de ambiente para envio real.
+    console.warn("[contact] RESEND_API_KEY não configurada — lead não enviado por e-mail", {
+      name,
+      email,
+      service,
+      message,
+      timestamp: new Date().toISOString(),
+    });
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    const resend = new Resend(resendApiKey);
+    const serviceLabel = SERVICE_LABELS[service as (typeof ALLOWED_SERVICES)[number]];
+
+    await resend.emails.send({
+      from: "Sena Tech & Co. <onboarding@resend.dev>",
+      to: siteConfig.contact.email,
+      replyTo: email,
+      subject: `Novo contato: ${name} — ${serviceLabel}`,
+      html: `
+        <p><strong>Nome:</strong> ${escapeHtml(name)}</p>
+        <p><strong>E-mail:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Serviço de interesse:</strong> ${escapeHtml(serviceLabel)}</p>
+        <p><strong>Mensagem:</strong></p>
+        <p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>
+      `,
+    });
+
+    console.info("[contact] novo lead enviado por e-mail", {
+      service,
+      timestamp: new Date().toISOString(),
+    });
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    // Se o envio falhar, registramos os dados completos no log para não
+    // perder o lead, mesmo que isso signifique logar PII neste caso pontual.
+    console.error("[contact] falha ao enviar e-mail via Resend", err, {
+      name,
+      email,
+      service,
+      message,
+      timestamp: new Date().toISOString(),
+    });
+    return NextResponse.json(
+      { error: "Não foi possível enviar sua mensagem. Tente novamente ou fale pelo WhatsApp." },
+      { status: 502 },
+    );
+  }
 }
