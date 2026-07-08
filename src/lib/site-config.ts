@@ -6,7 +6,7 @@
  * contatos, redes sociais, endereço e URL de produção em todo o site.
  */
 
-const WHATSAPP_NUMBER = "5500000000000"; // SUBSTITUA: DDI+DDD+número, só dígitos (ex: 5511999998888)
+const WHATSAPP_NUMBER = "5583991341125"; // DDI+DDD+número, só dígitos
 
 export const siteConfig = {
   name: "Sena Tech & Co.",
@@ -19,8 +19,7 @@ export const siteConfig = {
   locale: "pt_BR",
 
   contact: {
-    // SUBSTITUA pelo e-mail real de contato
-    email: "contato@senatech.com.br",
+    email: "sena.tech.co1@gmail.com",
     whatsappNumber: WHATSAPP_NUMBER,
     whatsappLink: `https://wa.me/${WHATSAPP_NUMBER}`,
     whatsappLinkWithMessage: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
