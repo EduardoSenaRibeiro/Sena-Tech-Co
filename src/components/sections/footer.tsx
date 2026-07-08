@@ -1,4 +1,4 @@
-import { Zap } from "lucide-react";
+import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
@@ -7,9 +7,13 @@ export function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-600 to-purple-500 flex items-center justify-center">
-              <Zap className="w-3.5 h-3.5 text-white" strokeWidth={2.5} aria-hidden="true" />
-            </div>
+            <Image
+              src="/images/logo-mark.png"
+              alt=""
+              width={28}
+              height={28}
+              className="w-7 h-7 object-contain"
+            />
             <span className="text-base font-bold text-white">
               {siteConfig.shortName}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">

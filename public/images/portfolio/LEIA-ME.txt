@@ -1,0 +1,4 @@
+Coloque aqui as imagens reais dos projetos do portfólio (ex: dashboard-financeiro.png, ecommerce.jpg).
+
+Depois de colocar os arquivos, me avise o nome de cada um e eu troco as referências
+em src/components/sections/portfolio.tsx (hoje elas apontam para imagens de exemplo do Unsplash).

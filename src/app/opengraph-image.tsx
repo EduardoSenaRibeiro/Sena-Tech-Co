@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/site-config";
 
@@ -7,6 +9,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
+  const logoMark = readFileSync(join(process.cwd(), "public/images/logo-mark.png"));
+  const logoMarkSrc = `data:image/png;base64,${logoMark.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -26,16 +31,14 @@ export default async function Image() {
         <div
           style={{
             display: "flex",
-            width: 96,
-            height: 96,
-            borderRadius: 24,
+            width: 120,
+            height: 120,
             alignItems: "center",
             justifyContent: "center",
-            background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-            boxShadow: "0 0 60px rgba(124,58,237,0.6)",
           }}
         >
-          <div style={{ display: "flex", fontSize: 52, color: "#fff" }}>⚡</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logoMarkSrc} width={120} height={120} alt="" />
         </div>
         <div
           style={{

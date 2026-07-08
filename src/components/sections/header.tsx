@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
-import { Menu, MessageCircle, X, Zap } from "lucide-react";
+import { Menu, MessageCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
 import { GradientButton } from "@/components/ui/gradient-button";
@@ -42,9 +43,14 @@ export function Header() {
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <a href="#inicio" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-purple-500 flex items-center justify-center shadow-[0_0_16px_rgba(124,58,237,0.5)]">
-            <Zap className="w-4 h-4 text-white" strokeWidth={2.5} />
-          </div>
+          <Image
+            src="/images/logo-mark.png"
+            alt=""
+            width={32}
+            height={32}
+            priority
+            className="w-8 h-8 object-contain drop-shadow-[0_0_16px_rgba(124,58,237,0.5)]"
+          />
           <span className="text-lg font-bold text-white tracking-tight font-[family-name:var(--font-outfit)]">
             {siteConfig.shortName}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">
